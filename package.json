@@ -1,0 +1,25 @@
+{
+  "name": "xlsxcat",
+  "version": "1.0.0",
+  "description": "Excelファイルの中身をCSVに出力する",
+  "main": "xlsxcat.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yhornisse/xlsxcat.git"
+  },
+  "keywords": [
+    "javascript"
+  ],
+  "author": "Yoshimune Saito",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yhornisse/xlsxcat/issues"
+  },
+  "homepage": "https://github.com/yhornisse/xlsxcat#readme",
+  "dependencies": {
+    "xlsx": "^0.14.1"
+  }
+}

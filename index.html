@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script src="./node_modules/xlsx/dist/xlsx.core.min.js"></script>
+    <script src="./xlsxcat.js"></script>
+    <script>
+	function xlsxcat(evt1){
+    		let f = evt1.target.files[0];
+    		let v = document.getElementById('file');
+    		let reader = new FileReader();
+    		reader.onload = function(evt2){
+			const BOM = new Uint8Array([0xEF, 0xBB, 0xBF]);
+			let data = evt2.target.result;
+			let book = XLSX.read(data, {type:'binary'});
+			let str = parseBook(book);
+       	 		let blob = new Blob([BOM, str], { "type" : "text/csv" });
+        		let d = document.getElementById('download');
+
+        		d.href = window.URL.createObjectURL(blob);
+        		d.download = 'result.csv';
+        		document.getElementById('download').style.display = 'inline';
+
+			let table = '';
+			for (let s in book.Sheets){
+	    			table += '<dt>' + s + '</dt>' 
+					+ '<dd>' + XLSX.utils.sheet_to_html(book.Sheets[s]) + '</dd>';
+			}
+			document.getElementById('output').innerHTML = table;
+    		}
+
+    		reader.readAsBinaryString(f);
+	}
+
+	window.onload = function(){
+    		document.getElementById('file').addEventListener('change', xlsxcat, false);
+	}
+    </script>
+    <style>
+      table, table tr, table td {
+      	border: 1px solid black;
+      	border-collapse: collapse;
+      }
+    </style>
+    <title>excelcat</title>
+  </head>
+  <body>
+    <input id="file" type="file" name="file" size="50" accept=".xlsx,.xls,.xlsm">
+    <a id="download" target="_blank" style="display:none;">ダウンロード</a>
+    <dl id="output">
+    </dl>
+  </body>
+</html>
