@@ -27,10 +27,10 @@ let xlsx = require('xlsx')
 let xlsxcat = require('./xlsxcat.js')
 
 if (process.argv.length != 3){
-    console.log('USAGE: ' + process.argv[1] + ' ファイル名');
-    console.log(' * xls,xlsx,csvが対象。');
+    console.log('USAGE: ' + process.argv[1] + ' [ファイル名...]');
+    console.log(' * xls,xlsm,xlsx,csvが対象。');
     process.exit(1);
 }
 
 let book = xlsx.readFile(process.argv[2]);
-console.log(xlsxcat.parseBook(book));
+process.stdout.write(xlsxcat.parseBook(process.argv[2], book));

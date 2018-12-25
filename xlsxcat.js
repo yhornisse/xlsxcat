@@ -22,18 +22,19 @@
  * THE SOFTWARE.
  * */
 
-function parseBook(book){
+function parseBook(filename, book){
     let retval = "";
     for (let s in book.Sheets){
 	for (let c in book.Sheets[s]){
-	    let v = book.Sheets[s][c];
-	    if (v.v){
+	    let cell = book.Sheets[s][c];
+	    if (cell.v){
 		let ary = [];
+		ary.push(filename);
 		ary.push(s);
 		ary.push(c);
-		ary.push((v.w)? v.w : '');
-		ary.push((v.f)? v.f.replace(/\"/g, '""') : '');
-		ary.push((v.r)? v.r : '');
+		ary.push((cell.w)? cell.w : '');
+		ary.push((cell.f)? cell.f.replace(/\"/g, '""') : '');
+		ary.push((cell.r)? cell.r : '');
 		retval += '"' + ary.join('","').replace(/\n/g, '\\n').replace(/\r/g, '\\r') + '"\r\n';
 	    }
 	}
@@ -41,4 +42,6 @@ function parseBook(book){
     return retval;
 }
 
-exports.parseBook = parseBook;
+if (typeof exports != "undefined"){
+    exports.parseBook = parseBook;
+}
