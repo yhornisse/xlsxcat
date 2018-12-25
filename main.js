@@ -32,5 +32,5 @@ if (process.argv.length != 3){
     process.exit(1);
 }
 
-let book = xlsx.read(process.argv[2]);
+let book = xlsx.readFile(process.argv[2]);
 console.log(xlsxcat.parseBook(book));
