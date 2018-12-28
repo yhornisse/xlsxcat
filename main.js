@@ -27,8 +27,8 @@ let xlsx = require('xlsx')
 let xlsxcat = require('./xlsxcat.js')
 
 if (process.argv.length != 3){
-    console.log('USAGE: ' + process.argv[1] + ' [ファイル名...]');
-    console.log(' * xls,xlsm,xlsx,csvが対象。');
+    console.log('USAGE: ' + process.argv[1] + ' [path]');
+    console.log(' * target: xls,xlsm,xlsx,csv');
     process.exit(1);
 }
 
