@@ -4,6 +4,7 @@
   "description": "Excelファイルの中身をCSVに出力する",
   "main": "xlsxcat.js",
   "scripts": {
+    "cat": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
